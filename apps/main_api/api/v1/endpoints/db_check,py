@@ -1,0 +1,17 @@
+from fastapi import APIRouter, Depends
+from sqlalchemy.orm import Session
+from apps.main_api.db.session import SessionLocal
+
+router = APIRouter()
+
+def get_db():
+    db = SessionLocal()
+    try:
+        yield db
+    finally:
+        db.close()
+
+@router.get("/db-check")
+def check_db(db: Session = Depends(get_db)):
+    result = db.execute("SELECT 1")
+    return {"db_status": "connected" if result.scalar() == 1 else "failed"}

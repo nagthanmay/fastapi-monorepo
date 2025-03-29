@@ -38,6 +38,7 @@ Main App Logic
     main.py: Initializes FastAPI app, adds middleware, routers, exception handlers.
 
     health.py: Sample /v1/health endpoint.
+    db_check.py: Optional /v1/db-check to verify DB connectivity.
 
 Middleware
 
@@ -75,11 +76,15 @@ Database Integration
 
     migrations/: Folder to store Alembic migration scripts.
 
+    models/user.py: Defines User table model
+
+    migrations/: Alembic folder for DB migrations
+
 Testing
 
     test_health.py: Verifies health endpoint returns 200 OK.
 
-✨ Core Features Recap
+Core Features 
 
     1.Deterministic dependency management using requirements.txt
 
@@ -169,9 +174,7 @@ cd fastapi-monorepo
 Step2: Create and Activate Virtual Environment
 python -m venv venv
 source venv/bin/activate    # For Linux/macOS
-
-# OR on Windows
-venv\Scripts\activate
+venv\Scripts\activate       # For windows
 
 step3: install python dependencies
 pip install -r requirements.txt
